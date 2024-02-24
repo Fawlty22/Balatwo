@@ -1,8 +1,12 @@
 <mat-card class="card">
     <div class="card-content">
-      <div class="corner-number-top">10</div>
-      <div class="corner-suit-top"><mat-icon>heart_broken</mat-icon></div>
-      <div class="corner-number-bottom">10</div>
-      <div class="corner-suit-bottom"><mat-icon>heart_broken</mat-icon></div>
+      <div class="corner-number-top">{{value}}</div>
+      <div class="corner-suit-top">{{suit.substring(0,1)}}</div>
+      <!-- <div class="corner-suit-top"><mat-icon>heart_broken</mat-icon></div> -->
+
+      <div class="corner-number-bottom">{{value}}</div>
+      <div class="corner-suit-bottom">{{suit.substring(0,1)}}</div>
+      <!-- <div class="corner-suit-bottom"><mat-icon>heart_broken</mat-icon></div> -->
+
     </div>
   </mat-card>

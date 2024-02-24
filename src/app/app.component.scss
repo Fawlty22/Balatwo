@@ -5,60 +5,36 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end; /* Align cards to the bottom of the container */
   }
   
   .card {
-    position: absolute;
-    bottom: 0;
+    position: relative; /* Change position to relative */
+    margin-left: -50px; /* Adjust negative margin to overlap cards */
     width: 200px; /* Set initial width */
     height: 300px; /* Set initial height */
-    transform-origin: bottom center;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    z-index: 1; /* Ensure cards stack on top of each other */
   }
   
   .card:hover {
-    width: calc(200px * 1.05); /* Increase width by 5% */
-    height: calc(300px * 1.05); /* Increase height by 5% */
-    transform: translate(-50%, -10%) rotate(0deg); /* Adjust translation */
+    transform: translateY(-10px) scale(1.05); /* Adjust hover effect */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 2; /* Increase z-index on hover to ensure it's on top */
+  }
+  
+  .card + .card {
+    margin-left: -25px; /* Adjust spacing between cards */
   }
   
   .card:nth-child(1) {
-    left: 50%;
-    transform: translateX(-50%) rotate(-30deg);
-  }
-  
-  .card:nth-child(2) {
-    left: 50%;
-    transform: translateX(-50%) rotate(-15deg);
-  }
-  
-  .card:nth-child(3) {
-    left: 50%;
-    transform: translateX(-50%) rotate(0deg);
-  }
-  
-  .card:nth-child(4) {
-    left: 50%;
-    transform: translateX(-50%) rotate(15deg);
-  }
-  
-  .card:nth-child(5) {
-    left: 50%;
-    transform: translateX(-50%) rotate(30deg);
-  }
-  
-  .card:nth-child(6) {
-    left: 50%;
-    transform: translateX(-50%) rotate(45deg);
+    margin-left: 0; /* No margin for the first card */
   }
   
   .card:nth-child(7) {
-    left: 50%;
-    transform: translateX(-50%) rotate(60deg);
+    margin-right: -50px; /* Adjust margin for the last card */
   }
   

@@ -1,3 +1,3 @@
 <div class="card-container">
- @for(card of cards; track card){<app-playing-card  class="card"></app-playing-card>}
+ @for(card of hand; track card){<app-playing-card [value]="card.value" [suit]="card.suit" class="card"></app-playing-card>}
 </div>
