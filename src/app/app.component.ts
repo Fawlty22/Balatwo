@@ -11,4 +11,5 @@ import { PlayingCardComponent } from './components/playing-card/playing-card.com
 })
 export class AppComponent {
   title = 'balatwo';
+  cards: string[] = ['one', 'two', 'three', 'four', 'five', 'six', 'seven']
 }
