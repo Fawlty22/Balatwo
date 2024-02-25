@@ -1,14 +1,17 @@
-<div class="p-2 flex justify-between">
-    <div>
+<div class="p-2 relative">
+    <div class="absolute top-2 left-2">
         Current Hand: {{currentHand}}
     </div>
-    <div>
+    <div class="absolute top-2 left-1/2 transform -translate-x-1/2">
+        Deck {{deck.length}} / 52
+    </div>
+    <div class="absolute top-2 right-2">
         Score: {{score}}
     </div>
 </div>
 <div class="p-4 h-50px] flex justify-center mt-40">
     <button mat-flat-button color="primary" class="mr-2" (click)="discard()" [disabled]="!selectedCards.length">Discard</button>
-    <button mat-flat-button color="accent" class="mr-2" (click)="onSubmit()">Submit</button>
+    <button mat-flat-button color="accent" class="mr-2" (click)="onSubmit()" [disabled]="!selectedCards.length">Submit</button>
 </div>
 <div class="card-container">
  @for(card of hand; track card) {
