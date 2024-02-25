@@ -131,11 +131,6 @@ export class PlayingCardComponent implements OnInit{
     };
     const div = (a: any, c: any) => el('div', a, c);
 
-    const ranks = 'A 2 3 4 5 6 7 8 9 10 J Q K'.split(' ');
-    const suits = '♠︎ ♥︎ ♣︎ ♦︎'.split(' ');
-    const getRank = (i: any) => ranks[i % 13];
-    const getSuit = (i: any) => suits[(i / 13) | 0];
-    const getColor = (i: any) => (((i / 13) | 0) % 2 ? 'red' : 'black');
     const createSuit = (suit: any) => (pos: any) => {
       const [x, y, mirrored] = pos;
       const mirroredClass = mirrored ? ' mirrored' : '';
