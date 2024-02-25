@@ -81,17 +81,12 @@ export class AppComponent implements OnInit {
         color: getColor(i),
       });
     }
+    this.deck = this.shuffle(Array.from(this.deckMap.values()));
   }
 
   setStartingHand(): void {
-    this.deck = Array.from(this.deckMap.values());
-    const deckArray = this.deck;
-    console.log(deckArray);
-    for (let i = 0; i < this.handSize; i++) {
-      const randomIndex = Math.floor(Math.random() * deckArray.length);
-      const randomCard = deckArray.splice(randomIndex, 1)[0];
-      this.hand.push(randomCard);
-    }
+    const drawnCards = this.deck.splice(-this.handSize);
+    this.hand.push(...drawnCards);
   }
 
   onSelect(card: Card) {
@@ -237,5 +232,15 @@ onSubmit(){
 addToScore(score:number){
   this.score += score;
 }
+
+shuffle = (cards: Card[]) => {
+  for (let i = 0; i < cards.length; i++) {
+    const rnd = Math.random() * i | 0;
+    const tmp = cards[i];
+    cards[i] = cards[rnd];
+    cards[rnd] = tmp;
+  }
+  return cards;
+};
 
 }
