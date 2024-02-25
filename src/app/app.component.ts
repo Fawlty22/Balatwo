@@ -88,22 +88,22 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    // Helper function to count occurrences of each rank
+    // count occurrences of each rank
     const countRanks: { [key: string]: number } = {};
     cards.forEach((card) => {
       countRanks[card.rank] = (countRanks[card.rank] || 0) + 1;
     });
 
-    // Helper function to count occurrences of each suit
+    // count occurrences of each suit
     const countSuits: { [key: string]: number } = {};
     cards.forEach((card) => {
       countSuits[card.suit] = (countSuits[card.suit] || 0) + 1;
     });
 
-    // Helper function to check for a flush
+    // check for a flush
     const isFlush = Object.values(countSuits).some((count) => count === 5);
     const rankOrder = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    // Helper function to check for a straight
+    // check for a straight
     const sortedRanks = Object.keys(countRanks).sort((a, b) => {
       
       return rankOrder.indexOf(a) - rankOrder.indexOf(b);
