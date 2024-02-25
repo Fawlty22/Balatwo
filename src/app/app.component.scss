@@ -1,40 +1,49 @@
 /* card.component.css */
 .card-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end; /* Align cards to the bottom of the container */
-  }
-  
-  .card {
-    position: relative; /* Change position to relative */
-    margin-left: -50px; /* Adjust negative margin to overlap cards */
-    width: 200px; /* Set initial width */
-    height: 300px; /* Set initial height */
-    border-radius: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    z-index: 1; /* Ensure cards stack on top of each other */
-  }
-  
-  .card:hover {
-    transform: translateY(-10px) scale(1.05); /* Adjust hover effect */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    z-index: 2; /* Increase z-index on hover to ensure it's on top */
-  }
-  
-  .card + .card {
-    margin-left: -25px; /* Adjust spacing between cards */
-  }
-  
-  .card:nth-child(1) {
-    margin-left: 0; /* No margin for the first card */
-  }
-  
-  .card:nth-child(7) {
-    margin-right: -50px; /* Adjust margin for the last card */
-  }
-  
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Align cards to the bottom of the container */
+}
+
+.card {
+  position: relative; /* Change position to relative */
+  margin-left: -50px; /* Adjust negative margin to overlap cards */
+  width: 200px; /* Set initial width */
+  height: 300px; /* Set initial height */
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  z-index: 1; /* Ensure cards stack on top of each other */
+}
+.selected {
+  transform: translateY(-30px) scale(1.05); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+
+.selected:hover {
+  transform: translateY(-30px) scale(1.1);
+  z-index: 3;
+}
+
+.card:hover:not(.selected) {
+  transform: scale(1.1); /* Adjust hover effect */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+.card + .card {
+  margin-left: -25px; /* Adjust spacing between cards */
+}
+
+.card:nth-child(1) {
+  margin-left: 0; /* No margin for the first card */
+}
+
+.card:nth-child(7) {
+  margin-right: -50px; /* Adjust margin for the last card */
+}

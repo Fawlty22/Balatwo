@@ -1,3 +1,20 @@
+<div>
+    Current Hand: {{currentHand}}
+    <div class="p-4 h-50px] flex justify-center">
+        <button mat-flat-button color="primary" class="mr-2">Discard</button>
+        <button mat-flat-button color="accent" class="mr-2">Submit</button>
+        <button mat-flat-button color="accent">Show Current Hand</button>
+
+    </div>
+</div>
 <div class="card-container">
- @for(card of hand; track card){<app-playing-card [value]="card.value" [suit]="card.suit" class="card"></app-playing-card>}
+ @for(card of hand; track card){
+    <app-playing-card 
+    [rank]="card.rank" 
+    [suit]="card.suit" 
+    [color]="card.color" 
+    class="card"
+    [ngClass]="{'selected': selected(card)}"
+    (click)="onSelect(card)">
+    </app-playing-card>}
 </div>

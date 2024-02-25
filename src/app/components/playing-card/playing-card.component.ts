@@ -12,9 +12,6 @@ import { CommonModule } from '@angular/common';
 })
 export class PlayingCardComponent {
   @Input() suit: string = '';
-  @Input() value: string = '';
-
-  isRed():boolean {
-    return this.suit === '♥︎' || this.suit === '♦︎';
-  }
+  @Input() rank: string = '';
+  @Input() color: string = '';
 }
