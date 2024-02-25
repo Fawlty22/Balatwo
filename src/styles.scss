@@ -11,7 +11,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .card.red {
     color: red;
   }
-  
+
 .card-topleft {
     position: absolute;
     top: 0.5em;
@@ -30,20 +30,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: 1em;
     line-height: 1.25;
     text-align: center;
-    transform: translate(-50%, 0);
+    // transform: translate(0%, 0);
   }
   
   .card-suits {
     position: absolute;
     top: 60%;
-    left: 54%;
+    left: 50%;
     width: 17.5%;
     height: 25%;
     transform: translate(-50%, -50%);
   }
   
   .card-suit {
-    font-size: 2em;
+    font-size: 2.4em;
     position: absolute;
   }
   
