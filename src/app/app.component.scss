@@ -9,6 +9,7 @@
 }
 
 .card {
+  display: inline-block;
   position: relative; /* Change position to relative */
   margin-left: -50px; /* Adjust negative margin to overlap cards */
   width: 200px; /* Set initial width */

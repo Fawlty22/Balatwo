@@ -8,3 +8,45 @@ html, body {
  }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.card.red {
+    color: red;
+  }
+  
+.card-topleft {
+    position: absolute;
+    top: 0.5em;
+    left: 0.75em;
+  }
+  
+  
+  .card-bottomright {
+    position: absolute;
+    bottom: 0.5em;
+    right: 0.75em;
+    transform: rotate(180deg);
+  }
+  
+  .card-corner-rank, .card-corner-suit {
+    font-size: 1em;
+    line-height: 1.25;
+    text-align: center;
+    transform: translate(-50%, 0);
+  }
+  
+  .card-suits {
+    position: absolute;
+    top: 60%;
+    left: 54%;
+    width: 17.5%;
+    height: 25%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .card-suit {
+    font-size: 2em;
+    position: absolute;
+  }
+  
+  .card-suit.mirrored {
+    transform: rotate(180deg);
+  }

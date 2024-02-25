@@ -18,7 +18,8 @@
     <app-playing-card 
     [rank]="card.rank" 
     [suit]="card.suit" 
-    [color]="card.color" 
+    [color]="card.color"
+    [value]="card.value" 
     class="card"
     [ngClass]="{'selected': selected(card)}"
     (click)="onSelect(card)">
