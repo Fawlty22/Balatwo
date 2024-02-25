@@ -1,9 +1,14 @@
-<div class="p-2">
-    Current Hand: {{currentHand}}
-    <div class="p-4 h-50px] flex justify-center">
-        <button mat-flat-button color="primary" class="mr-2" (click)="discard()" [disabled]="!selectedCards.length">Discard</button>
-        <button mat-flat-button color="accent" class="mr-2">Submit</button>
+<div class="p-2 flex justify-between">
+    <div>
+        Current Hand: {{currentHand}}
     </div>
+    <div>
+        Score: {{score}}
+    </div>
+</div>
+<div class="p-4 h-50px] flex justify-center mt-40">
+    <button mat-flat-button color="primary" class="mr-2" (click)="discard()" [disabled]="!selectedCards.length">Discard</button>
+    <button mat-flat-button color="accent" class="mr-2" (click)="onSubmit()">Submit</button>
 </div>
 <div class="card-container">
  @for(card of hand; track card) {

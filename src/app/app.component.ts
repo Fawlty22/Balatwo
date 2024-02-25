@@ -7,8 +7,22 @@ import { MatButtonModule } from '@angular/material/button';
 
 interface Card {
   rank: string;
+  value:number;
   suit: string;
   color: string;
+}
+
+enum PokerHandEnum {
+  HIGH_CARD = "High Card",
+  ONE_PAIR = "One Pair",
+  TWO_PAIR = "Two Pair",
+  THREE_OF_A_KIND = "Three of a Kind",
+  STRAIGHT = "Straight",
+  FLUSH = "Flush",
+  FULL_HOUSE = "Full House",
+  FOUR_OF_A_KIND = "Four of a Kind",
+  STRAIGHT_FLUSH = "Straight Flush",
+  ROYAL_FLUSH = "Royal Flush"
 }
 
 @Component({
@@ -20,6 +34,7 @@ interface Card {
 })
 export class AppComponent implements OnInit {
   title = 'balatwo';
+  score:number = 0;
   handSize: number = 7;
   deckSize: number = 52;
   selectedCards: Card[] = [];
@@ -28,6 +43,19 @@ export class AppComponent implements OnInit {
   deckMap: Map<number, Card> = new Map();
   deck: Card[] = [];
   discardPile: Card[] = [];
+  multiplierDictionary: { [key: string]: number } = {
+    "High Card": 1,
+    "One Pair": 2,
+    "Two Pair": 3,
+    "Three of a Kind": 4,
+    "Straight": 6,
+    "Flush": 7,
+    "Full House": 9,
+    "Four of a Kind": 11,
+    "Straight Flush": 12,
+    "Royal Flush": 14
+};
+
 
   ngOnInit(): void {
     this.populateDeck();
@@ -37,7 +65,9 @@ export class AppComponent implements OnInit {
   populateDeck(): void {
     const suits = '♠︎ ♥︎ ♣︎ ♦︎'.split(' ');
     const ranks = 'A 2 3 4 5 6 7 8 9 10 J Q K'.split(' ');
+    const values = [1,2,3,4,5,6,7,8,9,10,11,12,13];
     const getRank = (i: number): string => ranks[i % 13];
+    const getValue = (i: number): number => values[i % 13];
     const getSuit = (i: number): string => suits[(i / 13) | 0];
     const getColor = (i: number): string =>
       ((i / 13) | 0) % 2 ? 'red' : 'black';
@@ -47,6 +77,7 @@ export class AppComponent implements OnInit {
       this.deckMap.set(cardIndex++, {
         rank: getRank(i),
         suit: getSuit(i),
+        value: getValue(i),
         color: getColor(i),
       });
     }
@@ -132,39 +163,39 @@ export class AppComponent implements OnInit {
       const royalRanks = ['10', 'J', 'Q', 'K', 'A'];
       const royalFlush = royalRanks.every(rank => countRanks[rank]);
       if (royalFlush) {
-        this.currentHand = 'Royal Flush';
+        this.currentHand = PokerHandEnum.ROYAL_FLUSH;
       } else {
-        this.currentHand = 'Straight Flush';
+        this.currentHand = PokerHandEnum.STRAIGHT_FLUSH;
       }
     } else if (isFlush) {
       // Check for Flush
-      this.currentHand = 'Flush';
+      this.currentHand = PokerHandEnum.FLUSH;
     } else if (isStraight) {
       // Check for Straight
-      this.currentHand = 'Straight';
+      this.currentHand = PokerHandEnum.STRAIGHT;
     } else if (Object.values(countRanks).some((count) => count === 4)) {
       // Check for Four of a Kind
-      this.currentHand = 'Four of a Kind';
+      this.currentHand = PokerHandEnum.FOUR_OF_A_KIND;
     } else if (
       Object.values(countRanks).filter((count) => count === 3).length === 1 &&
       Object.values(countRanks).filter((count) => count === 2).length === 1
     ) {
       // Check for Full House
-      this.currentHand = 'Full House';
+      this.currentHand = PokerHandEnum.FULL_HOUSE;
     } else if (Object.values(countRanks).some((count) => count === 3)) {
       // Check for Three of a Kind
-      this.currentHand = 'Three of a Kind';
+      this.currentHand = PokerHandEnum.THREE_OF_A_KIND;
     } else if (
       Object.values(countRanks).filter((count) => count === 2).length === 2
     ) {
       // Check for Two Pair
-      this.currentHand = 'Two Pair';
+      this.currentHand = PokerHandEnum.TWO_PAIR;
     } else if (Object.values(countRanks).some((count) => count === 2)) {
       // Check for One Pair
-      this.currentHand = 'One Pair';
+      this.currentHand = PokerHandEnum.ONE_PAIR;
     } else {
       // High Card
-      this.currentHand = 'High Card';
+      this.currentHand = PokerHandEnum.HIGH_CARD;
     }
 }
 
@@ -192,4 +223,19 @@ draw(drawAmount: number){
 }
   this.setCurrentBestHand();
 }
+
+onSubmit(){
+  let cardTotals = 0;
+  this.selectedCards.forEach(card => cardTotals += +card.value);
+
+  let score = cardTotals * this.multiplierDictionary[this.currentHand];
+  
+  this.addToScore(score);
+  this.discard();
+}
+
+addToScore(score:number){
+  this.score += score;
+}
+
 }
